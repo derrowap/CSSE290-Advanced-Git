@@ -16,18 +16,23 @@ import subprocess
 tree_sha = ""
 search_term = ""
 
+# exit if tree_sha and search_term are not provided
+if len(sys.argv) != 5:
+  print("Must enter a tree SHA with -t flag and a search term with -s flag!")
+  exit(1)
+
+# load in command line parameters
 if sys.argv[1] == "-t":
   tree_sha = sys.argv[2]
   search_term = sys.argv[4]
-else:
+elif sys.argv[1] == "-s":
   tree_sha = sys.argv[4]
   search_term = sys.argv[2]
 
 cat_file = "git cat-file -p "
 
 def grep(tree_sha):
-  """Sea
-  """
+  """Calls search_file for all blobs under this tree and sub-trees"""
   objects = []
   lines = subprocess.getoutput(cat_file + tree_sha).split("\n")
   for line in lines:
@@ -40,9 +45,11 @@ def grep(tree_sha):
       search_file(details[2])
 
 def search_file(file_sha):
+  """Prints the entire line for any line in file containing the search_term"""
   lines = subprocess.getoutput(cat_file + file_sha).split("\n")
   for line in lines:
     if search_term in line:
       print(line)
 
+# launch grep
 grep(tree_sha)
