@@ -11,10 +11,7 @@ encounters another sub-tree, it will recursively grep the subtree as well.
 """
 
 import sys
-import os
-
-print("Number of arguments: {}".format(len(sys.argv)))
-print("Argument List: {}".format(str(sys.argv)))
+import subprocess
 
 tree_sha = ""
 search_term = ""
@@ -26,9 +23,26 @@ else:
   tree_sha = sys.argv[4]
   search_term = sys.argv[2]
 
-print("tree_sha = {}".format(tree_sha))
-print("search_term = {}".format(search_term))
+cat_file = "git cat-file -p "
 
-print(os.system("git cat-file -p master^{tree}"))
-# print(os.system("git hash-object ../HW01\ -\ Plumbing\ 1"))
-# print(os.system("git cat-file -p 56f4f9a11158ee3a93c2df940df667d16d9bd6e1"))
+def grep(tree_sha):
+  """Sea
+  """
+  objects = []
+  lines = subprocess.getoutput(cat_file + tree_sha).split("\n")
+  for line in lines:
+    details = line.split()
+    if details[1] == 'tree':
+      # obj is a tree, or sub-directory
+      grep(details[2])
+    else:
+      # obj is a blob, or file
+      search_file(details[2])
+
+def search_file(file_sha):
+  lines = subprocess.getoutput(cat_file + file_sha).split("\n")
+  for line in lines:
+    if search_term in line:
+      print(line)
+
+grep(tree_sha)
