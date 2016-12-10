@@ -1,0 +1,42 @@
+~/git/js-parsons % python3 alternate-history.py -t 4a218e805a4b -t cafd0d12 -t e6ab292b -o alternative-history-branch
+~/git/js-parsons % git checkout alternative-history-branch 
+Switched to branch 'alternative-history-branch'
+~/git/js-parsons % git log
+commit 00abc12e895e804e8757f4ddadaea3a9e5df159d
+Author: Austin Derrow-Pinion <derrowap@gmail.com>
+Date:   Sat Dec 10 14:43:01 2016 -0500
+
+    alternative followup
+
+commit 594165b069207f83960f8a62e71c3244dbdaedd4
+Author: Austin Derrow-Pinion <derrowap@gmail.com>
+Date:   Sat Dec 10 14:43:01 2016 -0500
+
+    alternative followup
+
+commit bb5a9145bc993306930a3d85f33fdcfcdb2f61da
+Author: Austin Derrow-Pinion <derrowap@gmail.com>
+Date:   Sat Dec 10 14:43:01 2016 -0500
+
+    alternative begin
+~/git/js-parsons % git cat-file -p 00abc12e
+tree e6ab292b8cb583d454f0e215311d15dfceb7bf33
+parent 594165b069207f83960f8a62e71c3244dbdaedd4
+author Austin Derrow-Pinion <derrowap@gmail.com> 1481398981 -0500
+committer Austin Derrow-Pinion <derrowap@gmail.com> 1481398981 -0500
+
+alternative followup
+~/git/js-parsons % git cat-file -p 594165b
+tree cafd0d121d20251e1a60df8e4f4d99edb3d1840e
+parent bb5a9145bc993306930a3d85f33fdcfcdb2f61da
+author Austin Derrow-Pinion <derrowap@gmail.com> 1481398981 -0500
+committer Austin Derrow-Pinion <derrowap@gmail.com> 1481398981 -0500
+
+alternative followup
+~/git/js-parsons % git cat-file -p bb5a9145b
+tree 4a218e805a4bc6a18b288f14f3673d652cbd5530
+author Austin Derrow-Pinion <derrowap@gmail.com> 1481398981 -0500
+committer Austin Derrow-Pinion <derrowap@gmail.com> 1481398981 -0500
+
+alternative begin
+~/git/js-parsons % 
