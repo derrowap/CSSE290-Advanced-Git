@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Author: Austin Derrow-Pinion
+# Date: 01/03/2016
+#
+# This script takes two parameters, the SHA of a particular commit and a
+# filename. It will reset the git repo completely to a particular commit,
+# except for the given filename. That file will be listed as an untracked
+# change after the script is run.
+
+mkdir ../temp && cp $2 ../temp/$2
+git reset --hard $1
+cp ../temp/$2 $2 && rm -rf ../temp

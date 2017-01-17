@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Author: Austin Derrow-Pinion
+# Date: 01/03/2016
+#
+# This script takes the last 2 commits to the repo, smashes them together
+# into a single commit and then commits that. The current head then points
+# to the newly created commit. It will then restore any staged or unstaged
+# changes so that the current state seems unmodified (except of course the
+# history is different).
+
+git stash
+git reset --mixed HEAD~~
+git add .
+git commit -a -m "SMASH"
+git stash pop

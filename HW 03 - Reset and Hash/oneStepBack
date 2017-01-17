@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Author: Austin Derrow-Pinion
+# Date: 01/03/2016
+#
+# This script takes the recent changes to the repo and moves them all 1 step
+# back.
+#
+# 1. Head becomes the previous commit.
+# 2. What was last commit before the script was run becomes staged changed to
+#    the head.
+# 3. What changes were staged before the script was run should become unstaged.
+# 4. Any unstaged changes before the script was run should be stashed.
+
+git stash
+git stash -u
+git stash pop stash@\{1\}
+git reset HEAD -- .
+git stash -u
+git reset --mixed HEAD~
+git add .
+git stash pop
