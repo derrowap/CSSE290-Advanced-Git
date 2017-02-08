@@ -1,0 +1,27 @@
+~/git/js-parsons % git checkout 179be36
+Note: checking out '179be36'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at 179be36... Updated the pseudocode example to include the exchangeable toggle
+~/git/js-parsons % rebase-verbosely.py -b ee6db14
+git rebase ee6db14
+First, rewinding head to replay your work on top of it...
+Applying: Allow different values to be specified for toggles in executable code
+Using index info to reconstruct a base tree...
+M parsons.js
+Falling back to patching base and 3-way merge...
+Auto-merging parsons.js
+Applying: Updated the pseudocode example to include the exchangeable toggle
+179be36 becomes ab6cb48: Updated the pseudocode example to include the exchangeable toggle
+daf7701 becomes fd2953d: Allow different values to be specified for toggles in executable code
+ee6db14 is the new base: Improved example test messages
+
+~/git/js-parsons % 
